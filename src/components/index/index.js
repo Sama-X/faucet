@@ -26,30 +26,45 @@ function App() {
         return false
     } else {
       setIsAddress(true)
-      axios.post('http://192.168.0.188:9650/ext/bc/' + isLian + '/public', {
-          jsonrpc: '2.0',
-          method: 'samavm.transfer',
-          params: {
-              to: addressUrl,
-              units: 1000000,
-              privKey: 'PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN',
-          },
-          id: 1,
-      })
-      .then((res) => {
-        console.log(res,'hjk')
-        if(res.data.error){
-          console.log(1)
-          setIsSuccess(false)
-          message.error('error:'+res.data.error.message)
-        }else if(res.data.result){
-          setIsSuccess(true)
-          message.success('success'+res.data.result.txId)
-        }
-        setIsAddress(true)
-        setAddressUrl('')
-        setTimeout(function(){setSpinStatus(false)},1000)
-      })
+      axios
+            .post('http://192.168.0.188:9650/ext/bc/P', {
+                jsonrpc: '2.0',
+                method: 'platform.getBlockchains',
+                params: {},
+                id: 1,
+            })
+            .then((res) => {
+                console.log(res, 'hgjkl')
+                for (let i in res.data.result.blockchains) {
+                    if (res.data.result.blockchains[i].name == 'sama') {
+                        let lian = res.data.result.blockchains[i].id
+                        axios.post('http://192.168.0.188:9650/ext/bc/' + lian + '/public', {
+                            jsonrpc: '2.0',
+                            method: 'samavm.transfer',
+                            params: {
+                                to: addressUrl,
+                                units: 1000000,
+                                privKey: 'PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN',
+                            },
+                            id: 1,
+                        })
+                        .then((res) => {
+                          console.log(res,'hjk')
+                          if(res.data.error){
+                            console.log(1)
+                            setIsSuccess(false)
+                            message.error('error:'+res.data.error.message)
+                          }else if(res.data.result){
+                            setIsSuccess(true)
+                            message.success('success'+res.data.result.txId)
+                          }
+                          setIsAddress(true)
+                          setAddressUrl('')
+                          setTimeout(function(){setSpinStatus(false)},1000)
+                        })
+                    }
+                  }
+            })
     }
   }
   return (
