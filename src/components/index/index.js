@@ -85,7 +85,7 @@ function App() {
                     value={addressUrl}
                     onChange={changeHandle}
                     onBlur={blurHandle}
-                    placeholder="addressUrl"
+                    placeholder="address"
                     style={{
                       background: '#313133',
                       lineHeight: '40px',
