@@ -43,7 +43,7 @@ function App() {
                             method: 'samavm.transfer',
                             params: {
                                 to: addressUrl,
-                                units: 1000000,
+                                units: 10000,
                                 privKey: 'PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN',
                             },
                             id: 1,
@@ -78,7 +78,7 @@ function App() {
       }
         <div className="content">
             <img className="logo router-link-active" src={require("../../assets/priviteKeyBg.png")} />
-            <h6>Drops are limited to 1 request in 24 hours.</h6>
+            {/* <h6>Drops are limited to 1 request in 24 hours.</h6> */}
             <div>
                 <Input
                     type="text"
@@ -118,7 +118,7 @@ function App() {
                       textAlign: 'center',
                     }}
                 >
-                    REQUEST 2 SAMA
+                    REQUEST 10 SAMA
                 </Button>
             </div>
         </div>
