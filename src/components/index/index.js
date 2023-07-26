@@ -24,9 +24,17 @@ function App() {
   const receiveFunc = () => {
     setSpinStatus(true)
     if (!addressUrl) {
-        setErrorText('Please enter the address')
+      setErrorText('Please enter the address')
+      setSpinStatus(false)
+      return false
+    }
+    if (localStorage.getItem(addressUrl)) {
+      let time = new Date().getTime() - localStorage.getItem(addressUrl)
+      if (time < 24 * 60 * 60 * 1000) {
+        setErrorText('Current address has been requested, please try again after 24 hours')
         setSpinStatus(false)
         return false
+      }
     }
     setErrorText('')
     axios.post(BASE_URL + "/ext/bc/" + lian + '/public', {
@@ -47,6 +55,7 @@ function App() {
         setErrorText(res.data.error.message)
       }else if(res.data.result){
         setIsSuccess(true)
+        localStorage.setItem(addressUrl, new Date().getTime())
         setErrorText('')
         message.success('success'+res.data.result.txId)
       }
