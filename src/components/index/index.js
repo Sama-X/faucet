@@ -42,7 +42,7 @@ function App() {
         method: 'samavm.transfer',
         params: {
             to: addressUrl,
-            units: 10000,
+            units: 10 * 1_000_000_000,
             privKey: 'PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN',
         },
         id: 1,
