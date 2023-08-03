@@ -1,3 +1,3 @@
-const proBaseURL = 'http://18.163.187.169:9666';
+const proBaseURL = 'http://18.163.50.205:9650';
 
 export const BASE_URL = proBaseURL;
