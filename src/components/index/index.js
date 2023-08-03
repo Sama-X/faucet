@@ -78,7 +78,7 @@ function App() {
     }).then((res) => {
         let lian = ''
         for (let i in res.data.result.blockchains) {
-          if (res.data.result.blockchains[i].name == 'sama') {
+          if (res.data.result.blockchains[i].name === 'lq') {
             lian = res.data.result.blockchains[i].id
             break
           }
