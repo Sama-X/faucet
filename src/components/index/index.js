@@ -19,7 +19,7 @@ function App() {
       setErrorText('Please enter the address')
       return false
     }
-    setAddressUrl(e.target.value)
+    setAddressUrl(e.target.value.toLowerCase())
   }
   const receiveFunc = () => {
     setSpinStatus(true)
@@ -37,16 +37,10 @@ function App() {
       }
     }
     setErrorText('')
-    axios.post(BASE_URL + "/ext/bc/" + lian + '/public', {
-        jsonrpc: '2.0',
-        method: 'samavm.transfer',
-        params: {
-            to: addressUrl,
-            units: 10 * 1_000_000_000,
-            privKey: 'PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN',
-        },
-        id: 1,
-    }, {
+    let formDataObj = new FormData()
+    formDataObj.append('chain_id', lian)
+    formDataObj.append('address', addressUrl)
+    axios.post(BASE_URL + '/faucet', formDataObj, {
       timeout: 10000
     }).then((res) => {
       if(res.data.error){
@@ -55,7 +49,7 @@ function App() {
         setErrorText(res.data.error.message)
       }else if(res.data.result){
         setIsSuccess(true)
-        localStorage.setItem(addressUrl, new Date().getTime())
+        localStorage.setItem(addressUrl.toLowerCase(), new Date().getTime())
         setErrorText('')
         message.success('success'+res.data.result.txId)
       }
@@ -68,14 +62,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.post(BASE_URL + '/ext/bc/P', {
-      jsonrpc: '2.0',
-      method: 'platform.getBlockchains',
-      params: {},
-      id: 1,
-    }, {
-      timeout: 3000
-    }).then((res) => {
+    axios.post(BASE_URL + '/get_block_chain').then((res) => {
         let lian = ''
         for (let i in res.data.result.blockchains) {
           if (res.data.result.blockchains[i].name === 'lq') {

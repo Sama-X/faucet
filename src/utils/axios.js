@@ -1,3 +1,3 @@
-const proBaseURL = 'http://18.163.50.205:9650';
+const proBaseURL = 'https://bridge.sigtacchain.com';
 
 export const BASE_URL = proBaseURL;
