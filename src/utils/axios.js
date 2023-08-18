@@ -14,7 +14,8 @@
 // )
 // const devBaseURL = 'http://localhost:3000';
 // const proBaseURL = 'https://api.citypro-tech.com';
-const proBaseURL = 'http://192.168.0.117:9003';//tan-bendi
+// const proBaseURL = 'http://192.168.0.117:9003';//tan-bendi
+const proBaseURL = 'http://54.252.63.176:9650';// new address
 // const proBaseURL = 'http://192.168.0.115:8000';//zhengshi
 
 // const ENV = 'prod'    // dev或者prod

@@ -27,7 +27,7 @@ function App() {
     } else {
       setIsAddress(true)
       axios
-            .post('http://154.40.42.152:9666/ext/bc/P', {
+            .post('http://54.252.63.176:9650/ext/bc/P', {
                 jsonrpc: '2.0',
                 method: 'platform.getBlockchains',
                 params: {},
@@ -38,7 +38,7 @@ function App() {
                 for (let i in res.data.result.blockchains) {
                     if (res.data.result.blockchains[i].name == 'sama') {
                         let lian = res.data.result.blockchains[i].id
-                        axios.post('http://154.40.42.152:9666/ext/bc/' + lian + '/public', {
+                        axios.post('http://54.252.63.176:9650/ext/bc/' + lian + '/public', {
                             jsonrpc: '2.0',
                             method: 'samavm.transfer',
                             params: {
