@@ -110,7 +110,7 @@ function App() {
               onClick={()=>receiveFunc()}
               className='submit'
             >
-              {spinStatus ? <Spin /> : 'Request 10 tDND'}
+              {spinStatus ? <Spin /> : 'Request 1 tDND'}
             </Button>
         </div>
         </div>
